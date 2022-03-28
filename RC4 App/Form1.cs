@@ -18,7 +18,7 @@ namespace RC4_App
             InitializeComponent();
         }
 
-        public string RC4(string input, string key)
+        public string RC4(string plaintext, string key)
         {
             StringBuilder result = new StringBuilder();
             int x, y, j = 0;
@@ -29,7 +29,7 @@ namespace RC4_App
                 box[i] = i;
             }
 
-            // Key - scheduling algorithm(KSA)
+            // Key-scheduling algorithm(KSA)
             for (int i = 0; i < 256; i++)
             {
                 j = (key[i % key.Length] + box[i] + j) % 256;
@@ -38,15 +38,15 @@ namespace RC4_App
                 box[j] = x;
             }
 
-            // Pseudo - random generation algorithm (PRGA)
-            for (int i = 0; i < input.Length; i++)
+            // Pseudo-random generation algorithm (PRGA)
+            for (int i = 0; i < plaintext.Length; i++)
             {
                 y = i % 256;
                 j = (box[y] + j) % 256;
                 x = box[y];
                 box[y] = box[j];
                 box[j] = x;
-                result.Append((char)(input[i] ^ box[(box[y] + box[j]) % 256]));
+                result.Append((char)(plaintext[i] ^ box[(box[y] + box[j]) % 256]));
             }
             return result.ToString();
         }
@@ -55,16 +55,30 @@ namespace RC4_App
         {
             String key = keyArea.Text;
             String plaintext = plaintextArea.Text;
-            String ciphertext = RC4(plaintext, key);
-            ciphertextArea.Text = ciphertext;
+            if(key == "" || plaintext == "")
+            {
+                MessageBox.Show("Key veya Plaintext boş, lütfen doldurup tekrar deneyin.", "Hata!", MessageBoxButtons.OK);
+            }
+            else
+            {
+                String ciphertext = RC4(plaintext, key);
+                ciphertextArea.Text = ciphertext;
+            }
         }
 
         private void decrypt_Click(object sender, EventArgs e)
         {
             String key = keyArea.Text;
             String ciphertext = ciphertextArea.Text;
-            String maintext = RC4(ciphertext, key);
-            maintextArea.Text = maintext;
+            if (key == "" || ciphertext == "")
+            {
+                MessageBox.Show("Key veya Plaintext boş, lütfen doldurup tekrar deneyin.", "Hata!", MessageBoxButtons.OK);
+            }
+            else
+            {
+                String maintext = RC4(ciphertext, key);
+                maintextArea.Text = maintext;
+            }
         }
     }
 }
