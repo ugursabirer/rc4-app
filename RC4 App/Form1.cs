@@ -61,8 +61,7 @@ namespace RC4_App
             }
             else
             {
-                String ciphertext = RC4(plaintext, key);
-                ciphertextArea.Text = ciphertext;
+                ciphertextArea.Text = RC4(plaintext, key);
             }
         }
 
@@ -72,12 +71,11 @@ namespace RC4_App
             String ciphertext = ciphertextArea.Text;
             if (key == "" || ciphertext == "")
             {
-                MessageBox.Show("Key veya Plaintext boş, lütfen doldurup tekrar deneyin.", "Hata!", MessageBoxButtons.OK);
+                MessageBox.Show("Decrypt işleminden önce, lütfen key ve plaintext girerek Encrypt işlemini gerçekleştirin.", "Hata!", MessageBoxButtons.OK);
             }
             else
             {
-                String maintext = RC4(ciphertext, key);
-                maintextArea.Text = maintext;
+                maintextArea.Text = RC4(ciphertext, key);
             }
         }
     }

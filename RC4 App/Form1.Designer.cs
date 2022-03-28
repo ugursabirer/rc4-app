@@ -123,11 +123,11 @@ namespace RC4_App
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(555, 350);
+            this.metroLabel4.Location = new System.Drawing.Point(566, 350);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(58, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(59, 19);
             this.metroLabel4.TabIndex = 9;
-            this.metroLabel4.Text = "Plaintext";
+            this.metroLabel4.Text = "Maintext";
             // 
             // Form1
             // 
